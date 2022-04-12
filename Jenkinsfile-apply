@@ -26,18 +26,12 @@ pipeline {
       }
     }
     stage ('Verify test user') {
-when {
-
-branch 'main'
-
-}
-
+      when {
+       branch 'main'
+     }
       steps {
-sh 'oc login -u testuser -p redhat123 --insecure-skip-tls-verify \
-
-https://kubernetes.default.svc:443'
-
-sh 'oc new-project test-testuser || true' 
+       sh 'oc login -u testuser -p redhat123 --insecure-skip-tls-verify  https://kubernetes.default.svc:443'
+       sh 'oc new-project test-testuser || true' 
      }
     }
   }
